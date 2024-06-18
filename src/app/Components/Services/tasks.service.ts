@@ -7,7 +7,7 @@ import { Task } from '../Models/task.model';
   providedIn: 'root'
 })
 export class TaskService {
-  private apiUrl = 'http://localhost:3000/tasks';
+  private apiUrl = 'https://server-nmjp.onrender.com/tasks';
 
   constructor(private http: HttpClient) {}
 
