@@ -1,0 +1,23 @@
+
+:root {
+    --color-primary: #DAA520; /* Given vibrant lavender */
+    --color-secondary: #8868ff; /* Complementary deeper purple */
+    --color-accent: #c7a4ff; /* A lighter, pastel lavender */
+    --color-background: #fcfcf2; /* Very light lavender for background, provides a soft contrast */
+    --color-header: #ffffff; /* Dark purple for headers, offers good readability */
+    --color-card: #ffffff; /* Pure white for card backgrounds */
+    --color-text: #333333; /* Almost black for text, to ensure maximum readability */
+    --color-footer-background: #8868ff; /* Almost black for text, to ensure maximum readability */
+    --color-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 
+    0 2px 4px -2px rgba(0, 0, 0, 0.1);
+    --width-left: 18rem;
+    --menu-background: #ffc706;
+    --menu-color: #000000;
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  

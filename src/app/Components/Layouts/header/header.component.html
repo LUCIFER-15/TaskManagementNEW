@@ -1,0 +1,8 @@
+<mat-toolbar class="toolbar" color="primary">
+  <span>Task Manager</span>
+  <span class="example-spacer"></span>
+  <span class="nav-links">
+    <button mat-flat-button [routerLink]="['/taskList']"[disabled]="currentRoute === '/taskList' || currentRoute === '/'">Home</button>
+    <button mat-flat-button [routerLink]="['/list']" [disabled]="currentRoute === '/list'">List</button>
+  </span>
+</mat-toolbar>

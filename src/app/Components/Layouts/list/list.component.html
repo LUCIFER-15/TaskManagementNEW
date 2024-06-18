@@ -1,0 +1,89 @@
+<div class="task-table">
+  <table mat-table [dataSource]="dataSource" matSort class="mat-elevation-z8">
+
+    <!-- ID Column -->
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let task"> {{task.id}} </td>
+    </ng-container>
+
+    <!-- Name Column -->
+    <ng-container matColumnDef="name">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name </th>
+      <td mat-cell *matCellDef="let task">
+        <ng-container *ngIf="!isEditing(task.id)">
+          {{task.title}}
+        </ng-container>
+        <ng-container *ngIf="isEditing(task.id)">
+          <input type="text" [(ngModel)]="task.title" class="edit-input">
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- Description Column -->
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Description </th>
+      <td mat-cell *matCellDef="let task">
+        <ng-container *ngIf="!isEditing(task.id)">
+          {{task.description}}
+        </ng-container>
+        <ng-container *ngIf="isEditing(task.id)">
+          <textarea [(ngModel)]="task.description" class="edit-textarea"></textarea>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- Status Column -->
+    <ng-container matColumnDef="status">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Status </th>
+      <td mat-cell *matCellDef="let task">
+        <ng-container *ngIf="!isEditing(task.id)">
+          {{ task.completed ? 'Complete' : 'Pending' }}
+        </ng-container>
+        <ng-container *ngIf="isEditing(task.id)">
+          <select [(ngModel)]="task.completed" (change)="onStatusChange(task, $event)" class="edit-select">
+            <option [value]="true">Complete</option>
+            <option [value]="false">Pending</option>
+          </select>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- Priority Column -->
+    <ng-container matColumnDef="priority">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> Priority </th>
+      <td mat-cell *matCellDef="let task">
+        <ng-container *ngIf="!isEditing(task.id)">
+          {{ task.priority }}
+        </ng-container>
+        <ng-container *ngIf="isEditing(task.id)">
+          <select [(ngModel)]="task.priority" class="edit-select">
+            <option value="High">High</option>
+            <option value="Medium">Medium</option>
+            <option value="Low">Low</option>
+          </select>
+        </ng-container>
+      </td>
+    </ng-container>
+
+    <!-- Actions Column -->
+    <ng-container matColumnDef="actions">
+      <th mat-header-cell *matHeaderCellDef> Actions </th>
+      <td mat-cell *matCellDef="let task">
+        <div class="buttons">
+          <button mat-icon-button class="edit-button" (click)="toggleEdit(task.id)">
+            <mat-icon>{{ isEditing(task.id) ? 'save' : 'edit' }}</mat-icon>
+          </button>
+          <button mat-icon-button class="delete-button" (click)="onDelete(task.id)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;" [ngClass]="{'completed': row.completed, 'pending': !row.completed}"></tr>
+  </table>
+
+  <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons aria-label="Select page of periodic elements"></mat-paginator>
+</div>

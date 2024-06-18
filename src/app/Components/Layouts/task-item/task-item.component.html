@@ -1,0 +1,32 @@
+<div class="task-item" [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
+  <ng-container *ngIf="!editMode; else editModeSection">
+    <div class="task-header">
+      <h2>{{ task.title }}</h2>
+      <mat-slide-toggle 
+        class="toggle-completed" 
+        [(ngModel)]="task.completed" 
+        (change)="toggleComplete()" 
+        [ngClass]="{'completed': task.completed, 'pending': !task.completed}">
+        <!-- {{ task.completed ? 'Complete' : 'Pending' }} -->
+      </mat-slide-toggle>
+    </div>
+    <p class="task-description">{{ task.description }}</p>
+    <div class="example-button-row">
+      <button mat-flat-button color="primary" (click)="enableEdit()">Edit</button>
+      <button mat-flat-button color="primary" (click)="deleteTask()">Delete</button>
+    </div>
+  </ng-container>
+
+  <ng-template #editModeSection>
+    <mat-form-field appearance="outline"  class="custom-width">
+      <input matInput [(ngModel)]="task.title" placeholder="Title" />
+    </mat-form-field>
+    <mat-form-field appearance="outline" class="custom-width">
+      <textarea matInput [(ngModel)]="task.description" placeholder="Description"></textarea>
+    </mat-form-field>
+    <div class="example-button-row">
+      <button mat-flat-button color="primary" (click)="saveTask()">Save</button>
+      <button mat-flat-button color="primary" (click)="cancelEdit()">Cancel</button>
+    </div>
+  </ng-template>
+</div>

@@ -1,0 +1,20 @@
+<div>
+    <form  class="task-form"  #taskForm="ngForm">
+      <mat-form-field style="display: flex;" appearance="outline">
+        <input matInput name="title" [(ngModel)]="newTask.title" placeholder="Enter Title" required />
+
+        <mat-error *ngIf="taskForm.controls['title']?.invalid && taskForm.controls['title']?.touched">
+          Title is required.
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field style="display: flex;" appearance="outline">
+        <textarea matInput name="description" [(ngModel)]="newTask.description" placeholder="Enter Description" required></textarea>
+
+        <mat-error *ngIf="taskForm.controls['description']?.invalid && taskForm.controls['description']?.touched">
+          Description is required.
+        </mat-error>
+      </mat-form-field>
+      <button mat-flat-button color="accent" (click)="addTask(taskForm)" class="btn btn-primary" [disabled]="taskForm.invalid">Add Task</button>
+    </form>
+  </div>
+  
